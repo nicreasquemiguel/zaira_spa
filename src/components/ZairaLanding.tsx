@@ -470,7 +470,7 @@ export default function ZairaLanding() {
               textWrap: "balance",
             }}
           >
-            «ZAIRA significa flor que florece —<br />
+            «ZARIA significa flor que florece —<br />
             la mujer radiante que crece hacia su luz.»
           </p>
           <p
@@ -920,7 +920,7 @@ export default function ZairaLanding() {
               marginTop: 30,
             }}
           >
-            — Clienta ZAIRA
+            — Clienta ZARIA
           </p>
         </div>
       </section>
@@ -1153,7 +1153,7 @@ export default function ZairaLanding() {
               opacity: 0.6,
             }}
           >
-            <span suppressHydrationWarning>© {new Date().getFullYear()} ZAIRA Beauty Studio</span>
+            <span suppressHydrationWarning>© {new Date().getFullYear()} ZARIA Beauty Studio</span>
             <span>Hecho con cuidado · belleza que florece</span>
           </div>
         </div>

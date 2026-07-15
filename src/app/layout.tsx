@@ -25,7 +25,7 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "ZAIRA Beauty Studio · Donde tu belleza florece",
+  title: "ZARIA Beauty Studio · Donde tu belleza florece",
   description:
     "Un estudio donde el cuidado se vuelve ritual. Tratamientos faciales, corporales y de la mirada, pensados para realzar —con delicadeza— lo que ya eres.",
 };
