@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f5efe6;
+}
+
+::selection {
+  background: #5c1b2e;
+  color: #f5efe6;
+}
+
+@keyframes zfloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
+:root {
+  --bg: #f5efe6;
+  --bg2: #ece3d5;
+  --surface: #fcfaf5;
+  --ink: #2b2723;
+  --ink-soft: #6f665b;
+  --wine: #5c1b2e;
+  --wine-deep: #421322;
+  --gold: #a88a57;
+  --taupe: #b8a593;
+  --line: rgba(43, 39, 35, 0.14);
+  --hero-bg: #ece3d5;
+  --hero-ink: #2b2723;
+  --band-bg: #5c1b2e;
+  --band-ink: #f3e9dc;
+  --foot-bg: #241f1b;
+  --foot-ink: #e6dcce;
+  --scale: 1;
+  --frame: 220px 220px 22px 22px;
+}
+
+.nav-link {
+  transition: opacity 0.3s;
+}
+.nav-link:hover {
+  opacity: 0.55;
+}
+
+.btn-outline:hover {
+  background: var(--wine);
+  border-color: var(--wine);
+  color: #f8f1e8;
+}
+
+.btn-hero-solid {
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+.btn-hero-solid:hover {
+  transform: translateY(-2px);
+  background: #f6e7d2;
+}
+
+.link-underline-hero {
+  transition: opacity 0.3s;
+}
+.link-underline-hero:hover {
+  opacity: 0.6;
+}
+
+.service-card {
+  transition: background 0.35s ease;
+}
+.service-card:hover {
+  background: var(--bg);
+}
+
+.link-wine {
+  transition: opacity 0.3s;
+}
+.link-wine:hover {
+  opacity: 0.6;
+}
+
+.btn-wine-solid {
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+.btn-wine-solid:hover {
+  transform: translateY(-2px);
+  background: var(--wine-deep);
+}
+
+.footer-link {
+  transition: opacity 0.3s;
+}
+.footer-link:hover {
+  opacity: 1;
+}
+
+.modal-close-btn {
+  transition: background 0.3s;
+}
+.modal-close-btn:hover {
+  background: var(--bg2);
+}
+
+.btn-outline-ink {
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+.btn-outline-ink:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
