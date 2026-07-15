@@ -134,3 +134,38 @@ button {
   background: var(--ink);
   color: var(--bg);
 }
+
+.nav-links-desktop {
+  display: flex;
+}
+.nav-book-btn {
+  display: inline-flex;
+}
+.nav-hamburger-btn {
+  display: none;
+}
+.mobile-menu-panel {
+  display: none;
+}
+
+.hero-logo-wrap {
+  width: min(80%, 440px);
+}
+
+@media (max-width: 760px) {
+  .nav-links-desktop {
+    display: none;
+  }
+  .nav-book-btn {
+    display: none;
+  }
+  .nav-hamburger-btn {
+    display: inline-flex;
+  }
+  .mobile-menu-panel {
+    display: flex;
+  }
+  .hero-logo-wrap {
+    width: 94%;
+  }
+}

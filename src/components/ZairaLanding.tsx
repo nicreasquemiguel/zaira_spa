@@ -68,6 +68,13 @@ const SERVICES: Service[] = [
 
 const SERVICE_OPTIONS = [...SERVICES.map((s) => s.name), "Aún no lo sé"];
 
+const NAV_LINKS = [
+  { href: "#esencia", label: "Esencia" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#estudio", label: "El estudio" },
+  { href: "#contacto", label: "Contacto" },
+];
+
 const CREAM_MARK_FILTER =
   "brightness(0) saturate(100%) invert(87%) sepia(22%) saturate(560%) hue-rotate(342deg) brightness(97%) contrast(92%)";
 const DARK_LOGO_FILTER =
@@ -103,6 +110,7 @@ function stop(e: MouseEvent) {
 
 export default function ZairaLanding() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [booking, setBooking] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState<FormState>({
@@ -121,11 +129,11 @@ export default function ZairaLanding() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = booking ? "hidden" : "";
+    document.body.style.overflow = booking || menuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [booking]);
+  }, [booking, menuOpen]);
 
   function openBooking(service?: string) {
     setSubmitted(false);
@@ -178,13 +186,13 @@ export default function ZairaLanding() {
           left: 0,
           right: 0,
           zIndex: 60,
-          background: scrolled ? "var(--bg)" : "transparent",
-          boxShadow: scrolled
+          background: scrolled || menuOpen ? "var(--bg)" : "transparent",
+          boxShadow: scrolled || menuOpen
             ? "0 1px 0 var(--line), 0 16px 50px rgba(30,15,18,.08)"
             : "none",
           backdropFilter: "blur(10px)",
           transition: "background .45s ease, box-shadow .45s ease, padding .35s ease",
-          padding: `${scrolled ? "15px" : "26px"} clamp(20px,5vw,72px)`,
+          padding: `${scrolled || menuOpen ? "15px" : "26px"} clamp(20px,5vw,72px)`,
         }}
       >
         <nav
@@ -195,11 +203,12 @@ export default function ZairaLanding() {
             alignItems: "center",
             justifyContent: "space-between",
             gap: 24,
-            color: scrolled ? "var(--ink)" : "#EAD3B8",
+            color: scrolled || menuOpen ? "var(--ink)" : "#EAD3B8",
           }}
         >
           <a
             href="#hero"
+            onClick={() => setMenuOpen(false)}
             style={{
               display: "flex",
               alignItems: "center",
@@ -216,27 +225,22 @@ export default function ZairaLanding() {
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
                 backgroundSize: "contain",
-                filter: scrolled ? DARK_LOGO_FILTER : CREAM_MARK_FILTER,
+                filter: scrolled || menuOpen ? DARK_LOGO_FILTER : CREAM_MARK_FILTER,
                 transition: "filter .45s ease",
                 display: "block",
               }}
             />
           </a>
           <div
+            className="nav-links-desktop"
             style={{
-              display: "flex",
               alignItems: "center",
               gap: "clamp(18px,2.6vw,40px)",
               flexWrap: "wrap",
               justifyContent: "center",
             }}
           >
-            {[
-              { href: "#esencia", label: "Esencia" },
-              { href: "#servicios", label: "Servicios" },
-              { href: "#estudio", label: "El estudio" },
-              { href: "#contacto", label: "Contacto" },
-            ].map((link) => (
+            {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -254,30 +258,113 @@ export default function ZairaLanding() {
               </a>
             ))}
           </div>
-          <button
-            onClick={() => openBooking()}
-            className="btn-outline"
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+            <button
+              onClick={() => openBooking()}
+              className="btn-outline nav-book-btn"
+              style={{
+                alignItems: "center",
+                gap: 8,
+                border: "1px solid currentColor",
+                background: "transparent",
+                color: "inherit",
+                borderRadius: 999,
+                padding: "12px 24px",
+                fontSize: 11.5,
+                fontWeight: 500,
+                letterSpacing: ".2em",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+                transition: "background .35s ease,color .35s ease,border-color .35s ease",
+              }}
+            >
+              Reservar cita
+            </button>
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              className="nav-hamburger-btn"
+              aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                width: 42,
+                height: 42,
+                border: "1px solid currentColor",
+                background: "transparent",
+                color: "inherit",
+                borderRadius: "50%",
+                cursor: "pointer",
+                fontSize: 16,
+                lineHeight: 1,
+              }}
+            >
+              {menuOpen ? "✕" : "☰"}
+            </button>
+          </div>
+        </nav>
+
+        {menuOpen && (
+          <div
+            className="mobile-menu-panel"
             style={{
-              display: "inline-flex",
+              maxWidth: 1340,
+              margin: "0 auto",
+              display: "flex",
+              flexDirection: "column",
               alignItems: "center",
-              gap: 8,
-              border: "1px solid currentColor",
-              background: "transparent",
-              color: "inherit",
-              borderRadius: 999,
-              padding: "12px 24px",
-              fontSize: 11.5,
-              fontWeight: 500,
-              letterSpacing: ".2em",
-              textTransform: "uppercase",
-              cursor: "pointer",
-              whiteSpace: "nowrap",
-              transition: "background .35s ease,color .35s ease,border-color .35s ease",
+              gap: 22,
+              borderTop: "1px solid var(--line)",
+              marginTop: 20,
+              paddingTop: 24,
+              paddingBottom: 8,
+              color: "var(--ink)",
             }}
           >
-            Reservar cita
-          </button>
-        </nav>
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  color: "inherit",
+                  textDecoration: "none",
+                  fontSize: 15,
+                  letterSpacing: ".18em",
+                  textTransform: "uppercase",
+                  fontWeight: 400,
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                openBooking();
+              }}
+              className="btn-wine-solid"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                background: "var(--wine)",
+                color: "#F8F1E8",
+                border: "1px solid var(--wine)",
+                borderRadius: 999,
+                padding: "14px 34px",
+                fontSize: 12,
+                fontWeight: 500,
+                letterSpacing: ".2em",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                marginTop: 6,
+              }}
+            >
+              Reservar cita
+            </button>
+          </div>
+        )}
       </header>
 
       {/* HERO */}
@@ -326,7 +413,7 @@ export default function ZairaLanding() {
           >
             Beauty Studio · Est. 2026
           </p>
-          <div style={{ width: "min(80%,440px)" }}>
+          <div className="hero-logo-wrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/assets/normal-logo.png"
