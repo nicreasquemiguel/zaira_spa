@@ -72,8 +72,6 @@ const CREAM_MARK_FILTER =
   "brightness(0) saturate(100%) invert(87%) sepia(22%) saturate(560%) hue-rotate(342deg) brightness(97%) contrast(92%)";
 const DARK_LOGO_FILTER =
   "brightness(0) saturate(100%) invert(11%) sepia(48%) saturate(2400%) hue-rotate(312deg) brightness(92%) contrast(94%)";
-const HERO_LOGO_FILTER =
-  "brightness(0) saturate(100%) invert(18%) sepia(38%) saturate(1900%) hue-rotate(315deg) brightness(102%) contrast(96%) drop-shadow(.5px 0 0 rgba(44,10,21,.9)) drop-shadow(-.5px 0 0 rgba(44,10,21,.9)) drop-shadow(0 .5px 0 rgba(44,10,21,.9)) drop-shadow(0 -.5px 0 rgba(44,10,21,.9)) drop-shadow(0 3px 3px rgba(0,0,0,.4))";
 
 const FONT_JOST = "var(--font-jost), system-ui, sans-serif";
 const FONT_BODONI = "var(--font-bodoni), serif";
@@ -328,18 +326,39 @@ export default function ZairaLanding() {
           >
             Beauty Studio · Est. 2026
           </p>
-          <div style={{ position: "relative", width: "min(94%,560px)" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/zaria-logo.png"
-              alt="ZARIA Beauty Studio"
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 10,
+            }}
+          >
+            <span
               style={{
-                width: "100%",
-                height: "auto",
-                display: "block",
-                filter: HERO_LOGO_FILTER,
+                fontFamily: FONT_BODONI,
+                fontWeight: 600,
+                fontSize: "clamp(52px,10vw,116px)",
+                letterSpacing: ".02em",
+                lineHeight: 1,
+                color: "#EAD3B8",
               }}
-            />
+            >
+              ZAIRA
+            </span>
+            <span
+              style={{
+                fontFamily: FONT_JOST,
+                fontWeight: 400,
+                fontSize: "clamp(11px,1.4vw,15px)",
+                letterSpacing: ".55em",
+                textTransform: "uppercase",
+                color: "#C8A66C",
+                paddingLeft: ".55em",
+              }}
+            >
+              Beauty Studio
+            </span>
           </div>
           <p
             style={{
@@ -1078,18 +1097,32 @@ export default function ZairaLanding() {
             }}
           >
             <div style={{ gridColumn: "1 / -1", maxWidth: 520 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/assets/zaria-logo.png"
-                alt="ZARIA Beauty Studio"
-                style={{
-                  width: "auto",
-                  height: 160,
-                  display: "block",
-                  margin: "0 0 16px -8px",
-                  filter: CREAM_MARK_FILTER,
-                }}
-              />
+              <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 16 }}>
+                <span
+                  style={{
+                    fontFamily: FONT_BODONI,
+                    fontWeight: 600,
+                    fontSize: 46,
+                    letterSpacing: ".02em",
+                    lineHeight: 1,
+                  }}
+                >
+                  ZAIRA
+                </span>
+                <span
+                  style={{
+                    fontFamily: FONT_JOST,
+                    fontWeight: 400,
+                    fontSize: 11,
+                    letterSpacing: ".4em",
+                    textTransform: "uppercase",
+                    opacity: 0.7,
+                    paddingLeft: ".4em",
+                  }}
+                >
+                  Beauty Studio
+                </span>
+              </div>
               <p style={{ fontFamily: FONT_CORMORANT, fontStyle: "italic", fontSize: 24, opacity: 0.85 }}>
                 Donde tu belleza florece.
               </p>
